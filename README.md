@@ -24,3 +24,7 @@ This approach has a number of advantages:
 
 
 .. To be continued
+
+I decided to use Cookiecutter in order to enable users to set up their project with custom directory names. To use this package simply run the following from the terminal:
+
+cookiecutter https://github.com/Cawiess/data_project_template.git
