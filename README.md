@@ -28,3 +28,10 @@ This approach has a number of advantages:
 I decided to use Cookiecutter in order to enable users to set up their project with custom directory names. To use this package simply run the following from the terminal:
 
 cookiecutter https://github.com/Cawiess/data_project_template.git
+
+
+### OBS ###
+if you have an Anacondas installation of Python, make sure that it includes virtualenv.
+conda install virtual env
+
+Otherwise Tox will not be able to identify the virtual environment and get invocation errors as well as import errors, not finding modules.
