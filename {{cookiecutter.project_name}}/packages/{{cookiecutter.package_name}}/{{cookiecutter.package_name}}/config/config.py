@@ -1,4 +1,3 @@
-# External libraries
 from pathlib import Path
 from typing import List, Optional
 
@@ -22,7 +21,7 @@ ROOT = PACKAGE_ROOT.parent
 INPUT_DIR = f"{PACKAGE_ROOT}/input"
 ASSET_DIR = f"{PACKAGE_ROOT}/assets"
 OUTPUT_DIR = f"{PACKAGE_ROOT}/output"
-CONFIG_FILE_PATH = f"{PACKAGE_ROOT}/config/config.yml"
+CONFIG_FILE_PATH = PACKAGE_ROOT/"config.yml"
 
 
 class PackageConfig(BaseModel):
