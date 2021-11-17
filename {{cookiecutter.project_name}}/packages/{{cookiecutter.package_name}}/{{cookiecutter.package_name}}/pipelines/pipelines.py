@@ -1,6 +1,8 @@
 from sklearn.pipeline import Pipeline
 #TODO: Import preprocessors and analyzers needs setup of config files.
 
+from processing import preprocessors as pp
+
 
 '''
 This module contains the Sklearn pipelines which gathers the preprocessors and analyzers
@@ -13,11 +15,11 @@ preprocessing_pipeline = Pipeline(
     [
         (
             "Preprocessing pipeline step One",
-            print('Step one')
+            pp.ColumnLabelNormalizer()
         ),
         (
             "Preprocessing pipeline Step Two",
-            print('Step two')
+            pp.ColumnValueNormalizer()
         )
     ]
 )

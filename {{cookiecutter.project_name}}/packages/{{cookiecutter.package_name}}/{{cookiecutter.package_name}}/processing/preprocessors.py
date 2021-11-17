@@ -21,6 +21,7 @@ purpose-specific code, as well as a simple usecase below.
 
 '''
 
+######################################### PREPROCESSING UNIT TEMPLATE ############################
 class PreprocessorUnitTemplate(BaseEstimator, TransformerMixin):
     def __init__(self, variables: List[str]) -> None:
         '''
@@ -46,6 +47,83 @@ class PreprocessorUnitTemplate(BaseEstimator, TransformerMixin):
         '''
         X = X.copy()
         # YOUR CODE HERE
+
+        return X
+#######################################################################################################
+
+
+class ColumnLabelNormalizer(BaseEstimator, TransformerMixin):
+    def __init__(self):
+        '''
+        Input: None, iterates over all dataframe columns.
+        Normalizes column labels:
+            - remove whitespace
+            - spaces to _
+            - full lowercase
+            - remove clutter (ex. ;,.)
+        
+        
+        '''
+
+    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+        return self
+
+    def transform(self, X: pd.DataFrame):
+        
+        X = X.copy()
+        X.columns = [var.lower() for var in X.columns]
+        X.columns = [var.replace(';', '') for var in X.columns]
+        X.columns = [var.replace(' ', '_') for var in X.columns]
+        
+        return X
+
+class ColumnValueNormalizer(BaseEstimator, TransformerMixin):
+    def __init__(self):
+        '''
+        Input: None, iterates over all dataframe columns.
+        Normalizes column labels:
+            - remove whitespace
+            - spaces to _
+            - full lowercase
+            - remove clutter (ex. ;,.)
+            - Check if all remaining column values are numeric, if True; type --> float
+        
+        
+        '''
+
+    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+        return self
+
+    def transform(self, X: pd.DataFrame):
+        
+        X = X.copy()
+        special_characters = ';:' #TODO: move this to config file
+
+        for variable in X.columns:
+            if X[variable].dtype=='O':
+                if X[variable].str.contains('|'.join(special_characters)).any():
+                    X[variable] = X[variable].str.strip(special_characters)#.astype(bool).any()
+                    if X[variable].str.isnumeric().all() == True:
+                        X[variable] = X[variable].astype(float)
+                        
+        return X
+
+class ExtractSubsetVariables(BaseEstimator, TransformerMixin):
+    def __init__(self, variables: List[str]):
+        ''' Extracts selected variables only. '''
+
+        if not isinstance(variables, list):
+            raise ValueError("variables must be given as elements of list.")
+        
+        self.variables = variables
+
+    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+        return self
+
+    def transform(self, X: pd.DataFrame):
+        
+        X = X.copy()
+        X = X[self.variables]
 
         return X
 
