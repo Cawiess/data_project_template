@@ -6,7 +6,7 @@ from {{cookiecutter.package_name}}.pipelines import pipelines
 
 def main():
     print('Starting...') #TODO: LOG HERE
-    raw_data = DataManager.load_csv(config.package_config.raw_data)
+    raw_data = DataManager.load_csv(file_name=config.package_config.raw_data)
 
     print('Preprocessing data...') #TODO: LOG HERE
     processed_data = pipelines.preprocessing_pipeline.fit_transform(raw_data)

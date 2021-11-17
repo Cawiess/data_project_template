@@ -9,7 +9,7 @@ class DataManager:
         return _data
 
     def export_excel(*, data: pd.DataFrame, file_name: str) -> None:
-        data.to_excel(f"{config.OUTPUT_DIR}/{file_name}.xlsx", index=False)
+        data.to_excel(f"{config.OUTPUT_DIR}/{file_name}_{config.TODAY}.xlsx", index=False)
         return None
 
 
