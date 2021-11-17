@@ -2,7 +2,7 @@ package_name: {{cookiecutter.package_name}}
 
 # LOCAL DATA FILES
 raw_data: train.csv
-processed_data: processed_data.xlsx
+processed_data: None
 train_data_file: None
 test_data_file: None
 
