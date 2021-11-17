@@ -30,6 +30,28 @@ I decided to use Cookiecutter in order to enable users to set up their project w
 cookiecutter https://github.com/Cawiess/data_project_template.git
 
 
+Why use Tox?
+Tox is a virtual environment manager and testing automation tool.
+It facilitates the setup and running of the project code by:
+  - Setting up virtual python environment which works across multiple operating systems.
+  - Sets paths and home direcrtory
+  - Installs requirements and runs all commands needed for the package.
+
+To run the project code, the user only needs to execute the Tox.ini file.
+
+What are config.py and config.yml?
+Separate configuration files makes it easier and clearer to specify environment variables and parameters. As these specifications are outside of the operating source code, it is easier and faster for users to get an overview of, review and edit variables and parameters that the source code uses. 
+
+Yaml files are much more simple than python files, and since they only specify parameter information, there is very little room for introducing possible bugs and other problems. For this reason, we specify variables and parameters pertaining to the dataset and filenames in the config.yml file.
+
+Config.py is more complicated. It defines the package directory, and makes use of Pydantic BaseModel class to validate settings and input based on the information from the config.yml file. The classes in this module represent simple config objects which inherits from the Pydantic BaseModel. These config objects simply specify expected input information as class attributes. The config objects can be viewed as sub-config-objects which correspond to a specific theme, such as overall PackageConfig, PreprocessingConfig and ModelConfig. Each config object then validates its own specific set of configurations and settings. All sub-config-objects are then collected into a larger, overarching config-object.
+Config.py has three helper functions which: (i) finds the config.yml, (ii) reads the config.yml and (iii) validates information and parameters specified in confg.yml.
+
+Based on all above, config.py returns a config-object through which all variables and parameters are referred to. This way, the user is forced to be explicit with which variables will be used in the project and what to do with them. This also makes it easier to review, audit and debug any code. The program will stop early and alert with a validation error whenever any expectations regarding variable input are not met.
+
+We can construct different types of tests around this configuration set up to make 
+the package and its output as fail-safe, transparent and reproducible as possible.
+
 ### OBS ###
 if you have an Anacondas installation of Python, make sure that it includes virtualenv.
 conda install virtual env
