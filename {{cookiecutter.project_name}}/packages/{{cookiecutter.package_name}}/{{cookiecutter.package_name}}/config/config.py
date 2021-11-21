@@ -36,6 +36,7 @@ class PackageConfig(BaseModel):
     test_data_file: Optional[str]
     preprocess_pipeline_name: Optional[str]
     analysis_pipeline_name: Optional[str]
+    process_log_file: str
 
 
 class ModelConfig(BaseModel):
