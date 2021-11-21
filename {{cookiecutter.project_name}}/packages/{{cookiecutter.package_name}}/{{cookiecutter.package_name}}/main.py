@@ -1,11 +1,16 @@
 import pandas as pd
 
+from {{cookiecutter.package_name}} import __version__ as _version
 from {{cookiecutter.package_name}}.config.config import config
+from {{cookiecutter.package_name}}.config.logging import ProcessLogger
 from {{cookiecutter.package_name}}.processing.data_manager import DataManager
 from {{cookiecutter.package_name}}.pipelines import pipelines
 
+ProcessLogger = ProcessLogger(__name__)
+
 def main():
-    print('Starting...') #TODO: LOG HERE
+    ProcessLogger.processLogger.info(f" ======== Starting process with version: {_version} ========")
+
     raw_data = DataManager.load_csv(file_name=config.package_config.raw_data)
 
     print('Preprocessing data...') #TODO: LOG HERE

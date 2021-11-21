@@ -5,6 +5,7 @@ raw_data: train
 processed_data: processed_data
 train_data_file: None
 test_data_file: None
+process_log_file: process.log
 
 # VARIABLE SPECIFICATIONS
 targets:
