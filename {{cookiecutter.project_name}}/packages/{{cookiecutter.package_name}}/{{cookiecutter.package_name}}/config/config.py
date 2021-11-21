@@ -45,6 +45,7 @@ class ModelConfig(BaseModel):
     data processing and model fitting.
     """
 
+    primary_dependent_variables: List[str]
     variables_to_include: List[str]
     variance_threshold: Optional[float]
     alpha: Optional[float]

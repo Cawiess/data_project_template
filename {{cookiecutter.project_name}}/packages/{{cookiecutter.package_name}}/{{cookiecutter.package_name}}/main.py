@@ -13,8 +13,13 @@ def main():
 
     raw_data = DataManager.load_csv(file_name=config.package_config.raw_data)
 
-    print('Preprocessing data...') #TODO: LOG HERE
+    ProcessLogger.processLogger.info(f"\n Raw data dimensions: \n num rows: {raw_data.shape[0]}, num cols: {raw_data.shape[1]}")
+    ProcessLogger.processLogger.info(f"Primary dependent variable(s): {config.model_config.primary_dependent_variables}")
+    ProcessLogger.processLogger.info(f"\n Preprocessing pipeline: \n {pipelines.preprocessing_pipeline}")
+    
     processed_data = pipelines.preprocessing_pipeline.fit_transform(raw_data)
+    ProcessLogger.processLogger.info(f"\n Processed data dimensions: \n num rows: {raw_data.shape[0]}, num cols: {raw_data.shape[1]}")
+
     DataManager.export_excel(data=processed_data, file_name=config.package_config.processed_data)
 
 
@@ -22,4 +27,4 @@ def main():
 
 if __name__=='__main__':
     main()
-    print('Finished.') # TODO: LOG HERE
+    ProcessLogger.processLogger.info(f" ========================== END ========================== ")

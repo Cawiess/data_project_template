@@ -8,7 +8,7 @@ test_data_file: None
 process_log_file: process.log
 
 # VARIABLE SPECIFICATIONS
-targets:
+primary_dependent_variables:
   - target
 
 variables_to_include:
